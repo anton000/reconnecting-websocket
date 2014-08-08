@@ -56,7 +56,10 @@
         global.ReconnectingWebSocket = factory();
     }
 })(this, function () {
-
+    if (typeof WebSocket === 'undefined' && module.exports) {
+      var WebSocket = require('ws');  
+    }
+    
     function ReconnectingWebSocket(url, protocols) {
         protocols = protocols || [];
 
